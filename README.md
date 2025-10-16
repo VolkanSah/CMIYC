@@ -1,0 +1,234 @@
+# CMIFC - Catch Me If You Can!
+##### Headless Selenium Stealth Agent
+
+> Stealth Scraper Script Boilerplate
+
+**Critical legal notice — read this before anything else.**
+
+-----
+
+## Project Summary
+
+A compact Python testbed for browser fingerprint research and authorized red/blue team exercises. Short, **pragmatic**, and a bit cheeky. Use only with explicit permission.
+
+-----
+
+## ⚠️ Critical Warning
+
+This project contains code designed to alter or mask browser fingerprints and to bypass simple detection techniques.
+Do **not** use this code to access systems you do not own or do not have explicit, written permission to test.
+Illegal or unethical use is strictly prohibited. You accept full responsibility for any actions taken with this code.
+
+-----
+
+## Purpose & Intended Use
+
+  * For security research, QA, authorized penetration testing, red/blue team training, and education.
+  * Not for abuse. Not for bypassing access controls.
+
+-----
+
+## Safe / Compliance Mode (Recommended)
+
+Set a runtime flag to disable all stealth features. Use this for sensitive tests or when you lack full permissions.
+
+**Example (Environment Variable):**
+
+```bash
+export SSS_SAFE_MODE=1      # Unix
+set SSS_SAFE_MODE=1          # Windows (cmd)
+```
+
+**Example (Python Snippet):**
+
+```python
+import os
+SAFE_MODE = os.getenv("SSS_SAFE_MODE") == "1"
+
+if SAFE_MODE:
+    # Minimal, non-evasive driver
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    def create_stealth_driver():
+        opts = Options()
+        opts.add_argument("--window-size=1920,1080")
+        return webdriver.Chrome(options=opts)
+else:
+    from sss import create_stealth_driver
+```
+
+-----
+
+## Quick Features
+
+  * Create a Chrome WebDriver with optional stealth tweaks.
+  * Inject CDP scripts to modify fingerprint surfaces (unless $\text{SAFE\_MODE}$).
+  * Simulate simple human interactions: scrolling and random delays.
+  * Helpers: $\texttt{create\_stealth\_driver()}$, $\texttt{stealth\_xpath\_extraction(url)}$, $\texttt{test\_stealth\_detection(url)}$.
+
+-----
+
+## Requirements
+
+  * Python 3.8+
+  * Google Chrome and matching $\text{chromedriver}$.
+  * $\texttt{selenium}$ Python package.
+
+-----
+
+## Installation
+
+```bash
+python -m venv .venv
+source .venv/bin/activate       # or .venv\Scripts\activate on Windows
+pip install --upgrade pip
+pip install selenium
+```
+
+Place a matching $\text{chromedriver}$ in your $\text{PATH}$ or use a $\text{driver manager}$.
+
+-----
+
+## Quick Start (Safe)
+
+Run tests only against endpoints you control or where you have authorization.
+
+```bash
+SSS_SAFE_MODE=1 python sss.py
+```
+
+-----
+
+## Usage (Brief)
+
+```python
+from sss import create_stealth_driver, stealth_xpath_extraction
+
+driver = create_stealth_driver()
+try:
+    driver.get("https://example.com")    # only authorized targets
+    data = stealth_xpath_extraction("https://example.com")
+    print(len(data))
+finally:
+    driver.quit()
+```
+
+-----
+
+## Consent / Permission Template
+
+Copy-paste this into an email or doc when requesting testing permission.
+
+```
+Permission for Browser Testing and Data Collection
+
+This document grants [Your Name / Organization] permission to perform browser testing and data access on [Target Domain / URL], limited to the scope defined below.
+
+Scope:
+- Automated browsing for research and testing.
+- Collection of basic page metadata and DOM structure.
+- No attempts to access authenticated areas, private user data, or bypass controls.
+
+Duration:
+- From [start date] to [end date].
+
+Signed:
+[Target Owner Name], [Title]
+[Signature or Email Confirmation]
+[Date]
+```
+
+-----
+
+## Note
+
+The modular $\texttt{sss.py}$ is only an example of **how to build a headless bot that works like a human**. The parsing of data is **limited** to **extracting $\text{XPath}$ and $\text{CSS}$ selectors** to analyze sites with your external tools. **Against Kiddies\!**
+
+-----
+
+## Audit & Reporting (Short)
+
+  * Keep screenshots, request logs, and timestamps.
+  * Preserve written consent.
+  * If you find a vulnerability, follow coordinated disclosure.
+
+-----
+
+## Ethics & Best Practice
+
+  * Stop immediately if requested by the target owner.
+  * Minimize load. Respect rate limits and $\text{crawl-delay}$.
+  * Prefer APIs over scraping when possible.
+
+-----
+
+## Limitations
+
+  * Experimental. Results vary by Chrome version and target site.
+  * Not a guaranteed bypass for modern anti-bot systems.
+  * Headless mode may reduce site functionality.
+
+-----
+
+## Liability, Warranty & Indemnity (READ CAREFULLY)
+
+### No Warranty
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE AUTHORS, MAINTAINERS, CONTRIBUTORS, AND DISTRIBUTORS DISCLAIM ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+### No Liability
+
+IN NO EVENT SHALL THE AUTHORS, MAINTAINERS, CONTRIBUTORS, OR DISTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOSS OF PROFITS, LOSS OF DATA, INTERRUPTION OF BUSINESS, OR ANY OTHER DAMAGES WHATSOEVER, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, ARISING OUT OF OR IN CONNECTION WITH THE USE OR MISUSE OF THIS SOFTWARE.
+
+### Permitted Use Only (Strict)
+
+This project is intended solely for lawful security research, authorized penetration testing, red/blue team training, and educational use. You must obtain **explicit, written permission** from the owner of any systems you test. Do not use this software to access systems, data, or content you are not authorized to access.
+
+### Indemnity
+
+By using this software you agree to indemnify, defend, and hold harmless the authors, maintainers, contributors, and distributors from and against any claims, liabilities, damages, losses, costs, and expenses (including reasonable attorneys’ fees) arising from or related to your use, misuse, or distribution of the software.
+
+### Export & Legal Compliance
+
+You are responsible for ensuring compliance with all applicable laws, regulations, and export controls in your jurisdiction and the jurisdiction of any target.
+
+### Auditability & Consent
+
+Keep written proof of consent when conducting tests. Maintain logs, timestamps, and contact information of the authorizing party. If requested by an owner or authority, you must provide evidence of authorization.
+
+### No Professional Advice
+
+This text is a template only and does not constitute legal advice. Consult a qualified attorney for a binding liability strategy.
+
+-----
+
+## Contributor Agreement (Short)
+
+By submitting code, documentation, issues, or other contributions to this repository you confirm:
+
+1.  You have the right to contribute the content.
+2.  You grant the project a perpetual, worldwide, non-exclusive, royalty-free license to use your contribution.
+3.  You agree that your contribution does not violate any law or third-party right.
+4.  You agree to the Liability & Indemnity section above and will indemnify the project for claims arising from your contributions.
+
+If you do not accept these terms, do not submit a contribution.
+
+-----
+
+## Permission Checklist (for targets)
+
+Copy into your permission email or attach to requests.
+
+  * Target domain / IPs:
+  * Allowed actions: (e.g., crawl public pages, collect DOM, no auth bypass)
+  * Time window:
+  * Rate limits:
+  * Contact person (name + email):
+  * Written confirmation (attach email or signed doc)
+
+-----
+
+## License & Attribution
+
+Code credits: Volkan Sah (2023–2025).
+MIT license
