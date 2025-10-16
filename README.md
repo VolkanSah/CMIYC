@@ -1,52 +1,45 @@
-# CMIFC - Catch Me If You Can!
-##### Headless Selenium Stealth Agent
+# Stealth Scraper — README
 
-> Stealth Scraper Script Boilerplate
+**sss.py — Stealth Scraper Script (The Batmobile)**
 
-**Critical legal notice — read this before anything else.**
+> **Critical legal notice — read this before anything else.**
 
------
+---
 
-## Project Summary
+## Project summary
 
-A compact Python testbed for browser fingerprint research and authorized red/blue team exercises. Short, **pragmatic**, and a bit cheeky. Use only with explicit permission.
+A compact Python testbed for browser fingerprint research and authorized red/blue team exercises. Short, pragmatic, and a bit cheeky. Use only with explicit permission.
 
------
-
-## ⚠️ Critical Warning
+## ⚠️ Critical warning
 
 This project contains code designed to alter or mask browser fingerprints and to bypass simple detection techniques.
 Do **not** use this code to access systems you do not own or do not have explicit, written permission to test.
 Illegal or unethical use is strictly prohibited. You accept full responsibility for any actions taken with this code.
 
------
+## Purpose & intended use
 
-## Purpose & Intended Use
+* For security research, QA, authorized penetration testing, red/blue team training, and education.
+* Not for abuse. Not for bypassing access controls.
 
-  * For security research, QA, authorized penetration testing, red/blue team training, and education.
-  * Not for abuse. Not for bypassing access controls.
-
------
-
-## Safe / Compliance Mode (Recommended)
+## Safe / Compliance mode (recommended)
 
 Set a runtime flag to disable all stealth features. Use this for sensitive tests or when you lack full permissions.
 
-**Example (Environment Variable):**
+**Example (environment variable):**
 
 ```bash
 export SSS_SAFE_MODE=1      # Unix
-set SSS_SAFE_MODE=1          # Windows (cmd)
+set SSS_SAFE_MODE=1         # Windows (cmd)
 ```
 
-**Example (Python Snippet):**
+**Example (python snippet):**
 
 ```python
 import os
 SAFE_MODE = os.getenv("SSS_SAFE_MODE") == "1"
 
 if SAFE_MODE:
-    # Minimal, non-evasive driver
+    # minimal, non-evasive driver
     from selenium import webdriver
     from selenium.webdriver.chrome.options import Options
     def create_stealth_driver():
@@ -57,24 +50,18 @@ else:
     from sss import create_stealth_driver
 ```
 
------
+## Quick features
 
-## Quick Features
-
-  * Create a Chrome WebDriver with optional stealth tweaks.
-  * Inject CDP scripts to modify fingerprint surfaces (unless $\text{SAFE\_MODE}$).
-  * Simulate simple human interactions: scrolling and random delays.
-  * Helpers: $\texttt{create\_stealth\_driver()}$, $\texttt{stealth\_xpath\_extraction(url)}$, $\texttt{test\_stealth\_detection(url)}$.
-
------
+* Create a Chrome WebDriver with optional stealth tweaks.
+* Inject CDP scripts to modify fingerprint surfaces (unless SAFE_MODE).
+* Simulate simple human interactions: scrolling and random delays.
+* Helpers: `create_stealth_driver()`, `stealth_xpath_extraction(url)`, `test_stealth_detection(url)`.
 
 ## Requirements
 
-  * Python 3.8+
-  * Google Chrome and matching $\text{chromedriver}$.
-  * $\texttt{selenium}$ Python package.
-
------
+* Python 3.8+
+* Google Chrome and matching chromedriver.
+* `selenium` Python package.
 
 ## Installation
 
@@ -85,11 +72,9 @@ pip install --upgrade pip
 pip install selenium
 ```
 
-Place a matching $\text{chromedriver}$ in your $\text{PATH}$ or use a $\text{driver manager}$.
+Place a matching `chromedriver` in your PATH or use a driver manager.
 
------
-
-## Quick Start (Safe)
+## Quick start (safe)
 
 Run tests only against endpoints you control or where you have authorization.
 
@@ -97,9 +82,7 @@ Run tests only against endpoints you control or where you have authorization.
 SSS_SAFE_MODE=1 python sss.py
 ```
 
------
-
-## Usage (Brief)
+### Usage (brief)
 
 ```python
 from sss import create_stealth_driver, stealth_xpath_extraction
@@ -113,9 +96,11 @@ finally:
     driver.quit()
 ```
 
------
+### Note
 
-## Consent / Permission Template
+The modular sss.py is only an example of how to build a headless bot that works like a human. The parsing of data is limited to extracting XPath and CSS selectors to analyze sites with your external tools. Against Kiddies!
+
+## Consent / Permission template
 
 Copy-paste this into an email or doc when requesting testing permission.
 
@@ -138,37 +123,23 @@ Signed:
 [Date]
 ```
 
------
+## Audit & reporting (short)
 
-## Note
+* Keep screenshots, request logs, and timestamps.
+* Preserve written consent.
+* If you find a vulnerability, follow coordinated disclosure.
 
-The modular $\texttt{sss.py}$ is only an example of **how to build a headless bot that works like a human**. The parsing of data is **limited** to **extracting $\text{XPath}$ and $\text{CSS}$ selectors** to analyze sites with your external tools. **Against Kiddies\!**
+## Ethics & best practice
 
------
-
-## Audit & Reporting (Short)
-
-  * Keep screenshots, request logs, and timestamps.
-  * Preserve written consent.
-  * If you find a vulnerability, follow coordinated disclosure.
-
------
-
-## Ethics & Best Practice
-
-  * Stop immediately if requested by the target owner.
-  * Minimize load. Respect rate limits and $\text{crawl-delay}$.
-  * Prefer APIs over scraping when possible.
-
------
+* Stop immediately if requested by the target owner.
+* Minimize load. Respect rate limits and crawl-delay.
+* Prefer APIs over scraping when possible.
 
 ## Limitations
 
-  * Experimental. Results vary by Chrome version and target site.
-  * Not a guaranteed bypass for modern anti-bot systems.
-  * Headless mode may reduce site functionality.
-
------
+* Experimental. Results vary by Chrome version and target site.
+* Not a guaranteed bypass for modern anti-bot systems.
+* Headless mode may reduce site functionality.
 
 ## Liability, Warranty & Indemnity (READ CAREFULLY)
 
@@ -200,35 +171,28 @@ Keep written proof of consent when conducting tests. Maintain logs, timestamps, 
 
 This text is a template only and does not constitute legal advice. Consult a qualified attorney for a binding liability strategy.
 
------
-
-## Contributor Agreement (Short)
+## Contributor Agreement (short)
 
 By submitting code, documentation, issues, or other contributions to this repository you confirm:
 
-1.  You have the right to contribute the content.
-2.  You grant the project a perpetual, worldwide, non-exclusive, royalty-free license to use your contribution.
-3.  You agree that your contribution does not violate any law or third-party right.
-4.  You agree to the Liability & Indemnity section above and will indemnify the project for claims arising from your contributions.
+1. You have the right to contribute the content.
+2. You grant the project a perpetual, worldwide, non-exclusive, royalty-free license to use your contribution.
+3. You agree that your contribution does not violate any law or third-party right.
+4. You agree to the Liability & Indemnity section above and will indemnify the project for claims arising from your contributions.
 
 If you do not accept these terms, do not submit a contribution.
 
------
-
-## Permission Checklist (for targets)
+## Permission checklist (for targets)
 
 Copy into your permission email or attach to requests.
 
-  * Target domain / IPs:
-  * Allowed actions: (e.g., crawl public pages, collect DOM, no auth bypass)
-  * Time window:
-  * Rate limits:
-  * Contact person (name + email):
-  * Written confirmation (attach email or signed doc)
-
------
+* Target domain / IPs:
+* Allowed actions: (e.g., crawl public pages, collect DOM, no auth bypass)
+* Time window:
+* Rate limits:
+* Contact person (name + email):
+* Written confirmation (attach email or signed doc)
 
 ## License & Attribution
 
-Code credits: Volkan Sah (2023–2025).
-MIT license
+Code credits: Volkan Sah (2023–2025). MIT license
