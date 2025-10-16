@@ -1,6 +1,6 @@
 # Stealth Scraper — README
 
-**sss.py — Stealth Scraper Script (The Batmobile)**
+**sss.py — Stealth Scraper Script (Like a Batmobile)**
 
 > **Critical legal notice — read this before anything else.**
 
