@@ -1,14 +1,15 @@
-# Stealth Scraper — README
+# CMIFC - Catch Me If You Can! 
 
-**sss.py — Stealth Scraper Script (Like a Batmobile)**
+###### **Advanced Headless Selenium Stealth Agent for Evidence Collection**
 
-> **Critical legal notice — read this before anything else.**
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![Selenium](https://img.shields.io/badge/Selenium-4.0+-green.svg)](https://selenium.dev)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+ 
+> A fully human-like browser automation agent with advanced hardware fingerprint spoofing capabilities.
 
 ---
-
-## Project summary
-
-A compact Python testbed for browser fingerprint research and authorized red/blue team exercises. Short, pragmatic, and a bit cheeky. Use only with explicit permission.
 
 ## ⚠️ Critical warning
 
@@ -21,80 +22,209 @@ Illegal or unethical use is strictly prohibited. You accept full responsibility 
 * For security research, QA, authorized penetration testing, red/blue team training, and education.
 * Not for abuse. Not for bypassing access controls.
 
-## Safe / Compliance mode (recommended)
+---
 
-Set a runtime flag to disable all stealth features. Use this for sensitive tests or when you lack full permissions.
 
-**Example (environment variable):**
+##  Overview
 
-```bash
-export SSS_SAFE_MODE=1      # Unix
-set SSS_SAFE_MODE=1         # Windows (cmd)
-```
+CMIFC (Catch Me If You Can) is an advanced stealth scraping framework designed to bypass sophisticated anti-bot detection systems. It combines hardware fingerprint spoofing, human-like behavior simulation, and comprehensive browser automation concealment.
 
-**Example (python snippet):**
+##  Features
 
-```python
-import os
-SAFE_MODE = os.getenv("SSS_SAFE_MODE") == "1"
+###  Advanced Stealth Technology
+- **Hardware Fingerprint Spoofing**: Consistent WebGL, CPU, and memory profiling
+- **CDP-based Concealment**: Chrome DevTools Protocol optimizations
+- **Canvas Fingerprinting Protection**: Randomized pixel noise injection
+- **WebGL Debug Removal**: Blocks `WEBGL_debug_renderer_info` detection
+- **Automation Flag Elimination**: Removes all Selenium/WebDriver traces
 
-if SAFE_MODE:
-    # minimal, non-evasive driver
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-    def create_stealth_driver():
-        opts = Options()
-        opts.add_argument("--window-size=1920,1080")
-        return webdriver.Chrome(options=opts)
-else:
-    from sss import create_stealth_driver
-```
+###  Human Behavior Simulation
+- **Page-Type Specific Behavior**: Different patterns for forums, articles, generic sites
+- **Realistic Scroll Patterns**: Irregular scrolling with micro-movements and pauses
+- **Natural Click Delays**: Pre- and post-click timing variations
+- **Reading Simulation**: Variable pause durations mimicking human reading speeds
 
-## Quick features
+###  Browser Environment Spoofing
+- **Dynamic User-Agent Rotation**: Windows, Mac, Linux profiles
+- **Language Localization**: German/English language preferences
+- **Hardware Consistency**: Platform-specific hardware profiles
+- **Plugin Simulation**: Realistic browser plugin arrays
 
-* Create a Chrome WebDriver with optional stealth tweaks.
-* Inject CDP scripts to modify fingerprint surfaces (unless SAFE_MODE).
-* Simulate simple human interactions: scrolling and random delays.
-* Helpers: `create_stealth_driver()`, `stealth_xpath_extraction(url)`, `test_stealth_detection(url)`.
-
-## Requirements
-
-* Python 3.8+
-* Google Chrome and matching chromedriver.
-* `selenium` Python package.
-
-## Installation
+##  Requirements
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate       # or .venv\Scripts\activate on Windows
-pip install --upgrade pip
 pip install selenium
 ```
 
-Place a matching `chromedriver` in your PATH or use a driver manager.
+**System Requirements:**
+- Chrome/Chromium browser
+- ChromeDriver (compatible with your Chrome version)
+- Python 3.8+
 
-## Quick start (safe)
+## 🛠️ Installation
 
-Run tests only against endpoints you control or where you have authorization.
-
+1. **Clone the repository:**
 ```bash
-SSS_SAFE_MODE=1 python sss.py
+git clone https://github.com/yourusername/cmifc-stealth-agent.git
+cd cmifc-stealth-agent
 ```
 
-### Usage (brief)
+2. **Install ChromeDriver:**
+   - Download from [ChromeDriver website](https://chromedriver.chromium.org/)
+   - Ensure it's in your PATH or specify the path in the script
 
+3. **Verify installation:**
+```bash
+python CMIFC.py
+```
+
+##  Usage
+
+### Basic XPath Extraction
 ```python
-from sss import create_stealth_driver, stealth_xpath_extraction
+from CMIFC import stealth_xpath_extraction
+
+# Extract XPaths from a website
+xpaths = stealth_xpath_extraction("https://example.com", page_type="article")
+
+for item in xpaths:
+    print(f"XPath: {item['xpath']}")
+    print(f"Tag: {item['tag']}")
+    print(f"Text: {item['text']}")
+```
+
+### Custom Stealth Driver
+```python
+from CMIFC import create_stealth_driver, human_like_behavior
 
 driver = create_stealth_driver()
 try:
-    driver.get("https://example.com")    # only authorized targets
-    data = stealth_xpath_extraction("https://example.com")
-    print(len(data))
+    driver.get("https://target-site.com")
+    human_like_behavior(driver, "forum")
+    # Your automation code here
 finally:
     driver.quit()
 ```
+
+### Stealth Testing
+```python
+from CMIFC import test_stealth_detection
+
+# Test your stealth configuration
+test_stealth_detection("https://bot.sannysoft.com")
+```
+
+##  Configuration
+
+### Page Type Behaviors
+- **`forum`**: Quick scanning with back-scrolls and irregular pauses
+- **`article`**: Slow, methodical reading with long pauses
+- **`generic`**: Standard browsing with random scroll patterns
+
+### Hardware Profiles
+The script automatically selects appropriate hardware profiles based on User-Agent:
+- **Windows**: Intel hardware, 4-16GB RAM
+- **Mac**: Apple Silicon/AMD, 8-32GB RAM  
+- **Linux**: Generic Mesa/X.org, 2-8GB RAM
+
+##  Advanced Features
+
+### Human-Like Click Simulation
+```python
+from CMIFC import human_like_click
+
+element = driver.find_element("xpath", "//button")
+human_like_click(driver, element)
+```
+
+### Custom Behavior Patterns
+```python
+def custom_behavior(driver):
+    # Implement your own human behavior simulation
+    pass
+```
+
+##  Stealth Verification
+
+The script includes comprehensive testing to verify stealth effectiveness:
+
+```python
+test_stealth_detection()
+```
+
+**Expected Output:**
+```
+🔍 CMIFC Stealth Test Results:
+  Webdriver detected: None
+  Chrome runtime: True
+  Hardware Concurrency: 8
+  Device Memory: 16
+  ✅ Stealth Mode: ACTIVATED and CONSISTENT.
+```
+
+## ⚠️ Legal & Ethical Usage
+
+**Important Disclaimer:**
+- This tool is designed for **ethical security research**, **penetration testing**, and **authorized data collection**
+- Always respect `robots.txt`, terms of service, and applicable laws
+- Obtain proper authorization before testing any systems
+- The authors are not responsible for misuse of this tool
+
+### Intended Use Cases
+- ✅ Security research and penetration testing
+- ✅ Authorized web application testing
+- ✅ Competitive analysis (where permitted)
+- ✅ Academic research
+- ✅ Evidence collection for legal purposes
+
+### Prohibited Use Cases
+- ❌ Unauthorized scraping
+- ❌ Denial of service attacks
+- ❌ Credential stuffing
+- ❌ Fraudulent activities
+- ❌ Violating terms of service
+
+##  Detection Avoidance
+
+CMIFC employs multiple layers of concealment:
+
+1. **Browser Automation Flags**: Complete removal of WebDriver indicators
+2. **Hardware Consistency**: Matching User-Agent with hardware capabilities
+3. **Behavioral Patterns**: Human-like interaction timing and patterns
+4. **Fingerprint Spoofing**: Canvas, WebGL, and audio context protection
+5. **Network Characteristics**: Realistic browser fingerprinting
+
+##  Troubleshooting
+
+### Common Issues
+
+1. **ChromeDriver Version Mismatch**
+   ```bash
+   # Check Chrome version
+   google-chrome --version
+   # Download matching ChromeDriver version
+   ```
+
+2. **Headless Detection**
+   - Use `--headless=new` flag for modern headless mode
+   - Ensure all stealth optimizations are applied
+
+3. **Performance Optimization**
+   - Limit element processing with `elements[:80]`
+   - Adjust random delay ranges for your use case
+
+
+##  Acknowledgments
+
+- Selenium WebDriver team for robust browser automation
+- Chrome DevTools Protocol for advanced browser control
+- Security researchers advancing anti-bot detection
+
+---
+
+**Catch Me If You Can!** 
+
+*For educational and authorized security research purposes only.*
 
 ### Note
 
