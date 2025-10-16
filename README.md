@@ -13,14 +13,14 @@
 
 ## ⚠️ Critical warning
 
-This project contains code designed to alter or mask browser fingerprints and to bypass simple detection techniques.
-Do **not** use this code to access systems you do not own or do not have explicit, written permission to test.
+This project contains code designed to alter or mask browser fingerprints and to bypass bot detection techniques.
+Do **not** use this code to access systems you do not own or do not have explicit, written permission to test!
 Illegal or unethical use is strictly prohibited. You accept full responsibility for any actions taken with this code.
 
 ## Purpose & intended use
 
 * For security research, QA, authorized penetration testing, red/blue team training, and education.
-* Not for abuse. Not for bypassing access controls.
+* Not for abuse. Not for bypassing access controls!
 
 ---
 
@@ -29,7 +29,7 @@ Illegal or unethical use is strictly prohibited. You accept full responsibility 
 
 CMIFC (Catch Me If You Can) is an advanced stealth scraping framework designed to bypass sophisticated anti-bot detection systems. It combines hardware fingerprint spoofing, human-like behavior simulation, and comprehensive browser automation concealment.
 
-##  Features
+## 👑 Features 👑
 
 ###  Advanced Stealth Technology
 - **Hardware Fingerprint Spoofing**: Consistent WebGL, CPU, and memory profiling
@@ -62,13 +62,7 @@ pip install selenium
 - Python 3.8+
 
 ## 🛠️ Installation
-
-1. **Clone the repository:**
-```bash
-git clone https://github.com/yourusername/cmifc-stealth-agent.git
-cd cmifc-stealth-agent
-```
-
+1. ***Download CMIFC.py**
 2. **Install ChromeDriver:**
    - Download from [ChromeDriver website](https://chromedriver.chromium.org/)
    - Ensure it's in your PATH or specify the path in the script
@@ -162,7 +156,7 @@ test_stealth_detection()
   ✅ Stealth Mode: ACTIVATED and CONSISTENT.
 ```
 
-## ⚠️ Legal & Ethical Usage
+## ⚠️ Legal & Ethical Usage ⚠️
 
 **Important Disclaimer:**
 - This tool is designed for **ethical security research**, **penetration testing**, and **authorized data collection**
@@ -228,7 +222,7 @@ CMIFC employs multiple layers of concealment:
 
 ### Note
 
-The modular sss.py is only an example of how to build a headless bot that works like a human. The parsing of data is limited to extracting XPath and CSS selectors to analyze sites with your external tools. Against Kiddies!
+The modular file is only an example of how to build a headless bot that works like a human. The parsing of data is limited to extracting XPath and CSS selectors to analyze sites with your external tools. Against Kiddies!
 
 ## Consent / Permission template
 
