@@ -360,7 +360,7 @@ def test_stealth_detection(url="https://httpbin.org/headers"):
         print(f"  Platform (JS Check): {driver.execute_script('return navigator.platform')}")
         
         if webdriver_detected is None and chrome_runtime:
-            print("✅ Stealth Mode: ACTIVATED and CONSISTENT.")
+            print(" Stealth Mode: ACTIVATED and CONSISTENT.")
         else:
             print("❌ Stealth Mode: FAILED.")
             
@@ -378,7 +378,7 @@ if __name__ == "__main__":
     url = "https://httpbin.org/html"
     xpaths = stealth_xpath_extraction(url, page_type="article")
     
-    print(f"✅ Found: {len(xpaths)} XPaths")
+    print(f" Found: {len(xpaths)} XPaths")
     for item in xpaths[:8]:
         print(f"📍 {item['xpath']}")
         if item['text']:
